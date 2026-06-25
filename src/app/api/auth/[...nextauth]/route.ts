@@ -1,3 +1,17 @@
-import { handlers } from "@/lib/auth";
+import NextAuth from "next-auth";
+import KakaoProvider from "next-auth/providers/kakao";
 
-export const { GET, POST } = handlers;
+const handler = NextAuth({
+  providers: [
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID!,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET!,
+    }),
+  ],
+  pages: {
+    signIn: "/",
+  },
+  secret: process.env.AUTH_SECRET,
+});
+
+export { handler as GET, handler as POST };
