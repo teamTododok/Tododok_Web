@@ -15,6 +15,13 @@ export default function LoginPage() {
         >
           카카오로 로그인
         </button>
+
+        <button
+          onClick={() => signIn("naver", { callbackUrl: "/voucher" })}
+          className="flex items-center justify-center gap-2 rounded-xl bg-[#03C75A] py-3 text-sm font-semibold text-white"
+        >
+          네이버로 로그인
+        </button>
       </div>
     </main>
   );
