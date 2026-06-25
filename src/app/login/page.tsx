@@ -10,21 +10,21 @@ export default function LoginPage() {
 
       <div className="mt-6 flex w-full max-w-xs flex-col gap-3">
         <button
-          onClick={() => signIn("kakao", { callbackUrl: "/redeem" })}
+          onClick={() => signIn("kakao", { callbackUrl: "/voucher" })}
           className="flex items-center justify-center gap-2 rounded-xl bg-[#FEE500] py-3 text-sm font-semibold text-[#191919]"
         >
           카카오로 로그인
         </button>
 
         <button
-          onClick={() => signIn("naver", { callbackUrl: "/redeem" })}
+          onClick={() => signIn("naver", { callbackUrl: "/voucher" })}
           className="flex items-center justify-center gap-2 rounded-xl bg-[#03C75A] py-3 text-sm font-semibold text-white"
         >
           네이버로 로그인
         </button>
 
         <button
-          onClick={() => signIn("apple", { callbackUrl: "/redeem" })}
+          onClick={() => signIn("apple", { callbackUrl: "/voucher" })}
           className="flex items-center justify-center gap-2 rounded-xl bg-black py-3 text-sm font-semibold text-white"
         >
           Apple로 로그인

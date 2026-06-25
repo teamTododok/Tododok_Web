@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-export default function RedeemForm() {
+export default function VoucherForm() {
   const [supportId, setSupportId] = useState("");
-  const [redeemCode, setRedeemCode] = useState("");
+  const [voucherCode, setVoucherCode] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -13,10 +13,10 @@ export default function RedeemForm() {
     setStatus("loading");
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/redeem`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/voucher`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ supportId, redeemCode }),
+        body: JSON.stringify({ supportId, voucherCode }),
       });
 
       if (!res.ok) throw new Error("등록에 실패했습니다.");
@@ -42,7 +42,7 @@ export default function RedeemForm() {
       <input
         type="text"
         placeholder="쿠폰 코드"
-        value={redeemCode}
+        value={voucherCode}
         onChange={(e) => setRedeemCode(e.target.value)}
         required
         className="rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-400"
