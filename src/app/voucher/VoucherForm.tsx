@@ -43,7 +43,7 @@ export default function VoucherForm() {
         type="text"
         placeholder="쿠폰 코드"
         value={voucherCode}
-        onChange={(e) => setRedeemCode(e.target.value)}
+        onChange={(e) => setVoucherCode(e.target.value)}
         required
         className="rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-400"
       />
