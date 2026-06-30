@@ -192,10 +192,13 @@ export default function VoucherForm() {
               lineHeight: "160%",
               letterSpacing: "-0.02em",
               color: "#6E6E6E",
-              whiteSpace: "pre-line",
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 4,
             }}
           >
-            • {text}
+            <span style={{ flexShrink: 0 }}>•</span>
+            <span style={{ whiteSpace: "pre-line" }}>{text}</span>
           </li>
         ))}
       </ul>
