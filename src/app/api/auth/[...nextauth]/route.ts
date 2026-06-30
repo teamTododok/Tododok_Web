@@ -61,6 +61,12 @@ const handler = NextAuth({
       },
     },
   },
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith(baseUrl)) return url;
+      return `${baseUrl}/voucher`;
+    },
+  },
   pages: {
     signIn: "/",
   },
