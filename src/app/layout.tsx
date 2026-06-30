@@ -4,7 +4,11 @@ import SessionProvider from "@/components/SessionProvider";
 import "./globals.css";
 
 const suit = localFont({
-  src: "../../public/fonts/SUIT-Variable.woff2",
+  src: [
+    { path: "../../public/fonts/SUIT-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/SUIT-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../../public/fonts/SUIT-Bold.ttf", weight: "700", style: "normal" },
+  ],
   variable: "--font-suit",
   display: "swap",
 });
