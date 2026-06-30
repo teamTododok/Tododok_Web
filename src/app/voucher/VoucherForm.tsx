@@ -4,11 +4,11 @@ import { useState } from "react";
 import Image from "next/image";
 
 const NOTICES = [
-  { text: "프로모션 쿠폰 등록 시 멤버십이 즉시 시작됩니다.", color: "#6E6E6E" },
-  { text: "등록기간 이후에는 사용할 수 없습니다.", color: "#6E6E6E" },
-  { text: "등록된 쿠폰은 삭제가 불가능합니다.", color: "#6E6E6E" },
-  { text: "각 쿠폰은 1회만 등록할 수 있으며,\n이미 사용된 쿠폰은 다시 사용할 수 없습니다.", color: "#A3A3A3" },
-  { text: "쿠폰이 정상적으로 등록되지 않는 경우,\n설정 내 문의하기를 통해 문의해 주세요.", color: "#A3A3A3" },
+  "프로모션 쿠폰 등록 시 멤버십이 즉시 시작됩니다.",
+  "등록기간 이후에는 사용할 수 없습니다.",
+  "등록된 쿠폰은 삭제가 불가능합니다.",
+  "각 쿠폰은 1회만 등록할 수 있으며,\n이미 사용된 쿠폰은 다시 사용할 수 없습니다.",
+  "쿠폰이 정상적으로 등록되지 않는 경우,\n설정 내 문의하기를 통해 문의해 주세요.",
 ];
 
 const suit = { fontFamily: "SUIT, sans-serif" };
@@ -182,7 +182,7 @@ export default function VoucherForm() {
 
       {/* 안내사항 */}
       <ul style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 4 }}>
-        {NOTICES.map((item, i) => (
+        {NOTICES.map((text, i) => (
           <li
             key={i}
             style={{
@@ -191,11 +191,11 @@ export default function VoucherForm() {
               fontSize: 12,
               lineHeight: "160%",
               letterSpacing: "-0.02em",
-              color: item.color,
+              color: "#6E6E6E",
               whiteSpace: "pre-line",
             }}
           >
-            • {item.text}
+            • {text}
           </li>
         ))}
       </ul>
