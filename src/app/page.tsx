@@ -11,7 +11,7 @@ export default function LoginPage() {
     >
       <div className="flex flex-col" style={{ marginTop: 177, gap: 44 }}>
         <Image src="/logo-white.svg" alt="토도독" width={82} height={32} priority />
-        <p className="text-white font-bold" style={{ fontSize: 22, lineHeight: "140%" }}>
+        <p className="text-white" style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 22, lineHeight: "140%", letterSpacing: "-0.02em" }}>
           쿠폰번호를 입력하고<br />토도독 클럽을 시작해 보세요!
         </p>
       </div>
