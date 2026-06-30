@@ -29,9 +29,38 @@ const handler = NextAuth({
     AppleProvider({
       clientId: process.env.APPLE_ID!,
       clientSecret: getAppleClientSecret(),
-      checks: ["nonce"],
+      checks: [],
     }),
   ],
+  cookies: {
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+    state: {
+      name: "next-auth.state",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+    nonce: {
+      name: "next-auth.nonce",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+  },
   pages: {
     signIn: "/",
   },
