@@ -215,7 +215,7 @@ export default function VoucherForm() {
             fontWeight: 600,
             fontSize: 12,
             letterSpacing: "-0.02em",
-            color: "#A3A3A3",
+            color: "#6E6E6E",
             marginBottom: 4,
           }}
         >
