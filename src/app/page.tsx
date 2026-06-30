@@ -5,7 +5,15 @@ import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
+function useBgColor(color: string) {
+  useEffect(() => {
+    document.body.style.backgroundColor = color;
+    return () => { document.body.style.backgroundColor = ""; };
+  }, [color]);
+}
+
 export default function LoginPage() {
+  useBgColor("#FF532C");
   const { data: session, status } = useSession();
   const router = useRouter();
 
