@@ -62,7 +62,16 @@ const handler = NextAuth({
     },
   },
   callbacks: {
+    async signIn({ user, account }) {
+      console.log("[NextAuth] signIn callback", { user, account });
+      return true;
+    },
+    async jwt({ token, account, user }) {
+      console.log("[NextAuth] jwt callback", { token, account });
+      return token;
+    },
     async redirect({ url, baseUrl }) {
+      console.log("[NextAuth] redirect callback", { url, baseUrl });
       if (url.startsWith(baseUrl)) return url;
       return `${baseUrl}/voucher`;
     },
