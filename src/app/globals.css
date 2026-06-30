@@ -6,7 +6,7 @@
 }
 
 * {
-  font-family: "SUIT", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: var(--font-suit), -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 body {
