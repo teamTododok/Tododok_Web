@@ -71,7 +71,7 @@ const handler = NextAuth({
       return token;
     },
     async redirect({ url, baseUrl }) {
-      console.log("[NextAuth] redirect callback", { url, baseUrl });
+      if (url === baseUrl || url === `${baseUrl}/`) return `${baseUrl}/voucher`;
       if (url.startsWith(baseUrl)) return url;
       return `${baseUrl}/voucher`;
     },
