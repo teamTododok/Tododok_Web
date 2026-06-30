@@ -21,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT@1.0.4/fonts/static/woff2/SUIT.css"
+          href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700&display=swap"
         />
       </head>
       <body className="min-h-full flex flex-col antialiased" style={{ fontFamily: "'SUIT', -apple-system, BlinkMacSystemFont, sans-serif" }}>

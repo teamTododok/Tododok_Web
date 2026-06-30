@@ -5,8 +5,11 @@
   --foreground: #171717;
 }
 
+* {
+  font-family: "SUIT", -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "SUIT", -apple-system, BlinkMacSystemFont, sans-serif;
 }
