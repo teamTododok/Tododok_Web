@@ -183,7 +183,9 @@ export default function VoucherForm() {
             fontFamily: "SUIT, sans-serif",
             fontWeight: 500,
             fontSize: 11,
-            color: "#C8C8C8",
+            lineHeight: "160%",
+            letterSpacing: "-0.02em",
+            color: "#6E6E6E",
           }}
         >
           © 2026 Tododok. All rights reserved.
