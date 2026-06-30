@@ -19,7 +19,8 @@ export default function LoginPage() {
       <div className="flex flex-col gap-[14px] mt-auto">
         <button
           onClick={() => signIn("kakao", { callbackUrl: "/voucher" })}
-          className="flex items-center justify-center gap-[6px] w-full h-12 rounded-xl bg-[#FEE500] text-[#191919] text-sm font-semibold"
+          className="flex items-center justify-center gap-[6px] w-full h-12"
+          style={{ backgroundColor: "#FFDE00", color: "#3B1E1E", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em" }}
         >
           <Image src="/kakao-logo.svg" alt="kakao" width={15} height={14} />
           카카오로 로그인
@@ -27,7 +28,8 @@ export default function LoginPage() {
 
         <button
           onClick={() => signIn("naver", { callbackUrl: "/voucher" })}
-          className="flex items-center justify-center gap-[6px] w-full h-12 rounded-xl bg-[#03C75A] text-white text-sm font-semibold"
+          className="flex items-center justify-center gap-[6px] w-full h-12"
+          style={{ backgroundColor: "#00C300", color: "#FFFFFF", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em" }}
         >
           <Image src="/naver-logo.svg" alt="naver" width={14} height={14} />
           네이버로 로그인
@@ -35,7 +37,8 @@ export default function LoginPage() {
 
         <button
           onClick={() => signIn("apple", { callbackUrl: "/voucher" })}
-          className="flex items-center justify-center gap-[6px] w-full h-12 rounded-xl bg-black text-white text-sm font-semibold"
+          className="flex items-center justify-center gap-[6px] w-full h-12"
+          style={{ backgroundColor: "#000000", color: "#FFFFFF", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em" }}
         >
           <Image src="/apple-logo.svg" alt="apple" width={16} height={18} />
           Apple로 로그인
