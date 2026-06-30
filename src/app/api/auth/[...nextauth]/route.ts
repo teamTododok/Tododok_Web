@@ -29,6 +29,7 @@ const handler = NextAuth({
     AppleProvider({
       clientId: process.env.APPLE_ID!,
       clientSecret: getAppleClientSecret(),
+      checks: ["nonce"],
     }),
   ],
   pages: {
