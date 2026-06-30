@@ -39,7 +39,7 @@ export default function VoucherForm() {
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "#F6F6F6", paddingLeft: 30, paddingRight: 30 }}>
       {/* 로고 */}
-      <div style={{ marginTop: 110 }}>
+      <div style={{ marginTop: "calc(env(safe-area-inset-top, 0px) + 12px)" }}>
         <Image src="/logo-orange.svg" alt="토도독" width={46} height={18} />
       </div>
 
@@ -55,7 +55,7 @@ export default function VoucherForm() {
           marginTop: 60,
         }}
       >
-        토도독 클럽을<br />시작해 보세요!
+        토도독 클럽을 시작해 보세요!
       </h1>
 
       {/* 서브텍스트 */}
