@@ -1,26 +1,39 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white px-6">
-      <h1 className="text-2xl font-bold text-gray-900">토도독 로그인</h1>
-      <p className="text-sm text-gray-500">쿠폰 등록을 위해 로그인해 주세요</p>
+    <main className="flex min-h-screen flex-col justify-between bg-[#FF532C] px-5 pt-[90px] pb-[70px]">
+      <div className="flex flex-col gap-3">
+        <Image src="/logo-white.svg" alt="토도독" width={140} height={55} priority />
+        <p className="text-white text-lg font-semibold">조금씩, 꾸준히, 토도독.</p>
+      </div>
 
-      <div className="mt-6 flex w-full max-w-sm flex-col gap-3">
+      <div className="flex flex-col gap-[14px]">
         <button
           onClick={() => signIn("kakao", { callbackUrl: "/voucher" })}
-          className="flex items-center justify-center gap-2 rounded-xl bg-[#FEE500] py-3 text-sm font-semibold text-[#191919]"
+          className="flex items-center justify-center gap-[6px] w-full h-12 rounded bg-[#FEE500] text-[#191919] text-sm font-semibold"
         >
-          카카오로 로그인
+          <Image src="/kakao-logo.svg" alt="kakao" width={15} height={14} />
+          카카오로 시작하기
         </button>
 
         <button
           onClick={() => signIn("naver", { callbackUrl: "/voucher" })}
-          className="flex items-center justify-center gap-2 rounded-xl bg-[#03C75A] py-3 text-sm font-semibold text-white"
+          className="flex items-center justify-center gap-[6px] w-full h-12 rounded bg-[#03C75A] text-white text-sm font-semibold"
         >
-          네이버로 로그인
+          <Image src="/naver-logo.svg" alt="naver" width={14} height={14} />
+          네이버로 시작하기
+        </button>
+
+        <button
+          onClick={() => signIn("apple", { callbackUrl: "/voucher" })}
+          className="flex items-center justify-center gap-[6px] w-full h-12 rounded bg-black text-white text-sm font-semibold"
+        >
+          <Image src="/apple-logo.svg" alt="apple" width={16} height={18} />
+          Apple로 시작하기
         </button>
       </div>
     </main>
