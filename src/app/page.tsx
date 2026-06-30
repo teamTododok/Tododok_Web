@@ -1,9 +1,22 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { useEffect } from "react";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function LoginPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.replace("/voucher");
+    }
+  }, [status, router]);
+
+  if (status === "loading" || status === "authenticated") return null;
+
   return (
     <main
       className="flex min-h-screen flex-col bg-[#FF532C] px-5"
