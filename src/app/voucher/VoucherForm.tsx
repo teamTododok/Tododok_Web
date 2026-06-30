@@ -66,7 +66,7 @@ export default function VoucherForm() {
           fontSize: 12,
           lineHeight: "150%",
           letterSpacing: "-0.02em",
-          color: "#1A1A1A",
+          color: "#505050",
           marginTop: 4,
         }}
       >
