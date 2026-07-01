@@ -16,15 +16,23 @@ function Toast({ message, type, onHide }: { message: string; type: ToastType; on
       style={{
         position: "fixed",
         bottom: "calc(env(safe-area-inset-bottom, 0px) + 30px)",
-        left: 20,
-        right: 20,
+        left: 0,
+        right: 0,
+        display: "flex",
+        justifyContent: "center",
+        zIndex: 100,
+        pointerEvents: "none",
+      }}
+    >
+    <div
+      style={{
         display: "flex",
         alignItems: "center",
-        gap: 8,
         backgroundColor: "rgba(18,18,18,0.80)",
         borderRadius: 48,
         padding: "14px 20px",
-        zIndex: 100,
+        marginLeft: 20,
+        marginRight: 20,
       }}
     >
       {type === "error" && (
@@ -42,6 +50,7 @@ function Toast({ message, type, onHide }: { message: string; type: ToastType; on
       >
         {message}
       </span>
+    </div>
     </div>
   );
 }
@@ -230,7 +239,7 @@ export default function VoucherForm() {
             opacity: !voucherCode ? 0.5 : 1,
           }}
         >
-          {status === "loading" ? "등록 중..." : "등록하기"}
+          등록하기
         </button>
       </div>
 
