@@ -24,10 +24,11 @@ export async function backendLogin(
   if (!res.ok) throw new Error(`Backend auth failed: ${res.status} ${body}`);
 
   const data = JSON.parse(body);
+  const d = data.data;
   return {
-    accessToken: data.data.accessToken,
-    refreshToken: data.data.refreshToken,
-    membershipType: data.data.membershipType ?? "BASIC",
+    accessToken: d.tokenResponse?.accessToken ?? d.accessToken,
+    refreshToken: d.tokenResponse?.refreshToken ?? d.refreshToken,
+    membershipType: d.membershipType ?? "BASIC",
   };
 }
 
