@@ -24,8 +24,8 @@ export async function backendLogin(
 
   const data = JSON.parse(body);
   return {
-    accessToken: data.data.tokenResponse.accessToken,
-    refreshToken: data.data.tokenResponse.refreshToken,
+    accessToken: data.data.accessToken,
+    refreshToken: data.data.refreshToken,
   };
 }
 
