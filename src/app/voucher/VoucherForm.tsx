@@ -208,9 +208,9 @@ export default function VoucherForm() {
             <button
               type="button"
               onClick={() => setVoucherCode("")}
-              style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", color: "#A3A3A3", background: "none", border: "none", cursor: "pointer" }}
+              style={{ position: "absolute", right: 10.35, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex" }}
             >
-              ✕
+              <Image src="/clear.svg" alt="clear" width={22} height={22} />
             </button>
           )}
         </div>
