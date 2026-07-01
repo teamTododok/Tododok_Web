@@ -16,10 +16,13 @@ export async function backendLogin(
     body: JSON.stringify({ code, redirectUri }),
   });
 
-  if (res.status === 404) return null; // 신규 유저
-  if (!res.ok) throw new Error(`Backend auth failed: ${res.status}`);
+  const body = await res.text();
+  console.log(`[backend-auth] status=${res.status} body=${body}`);
 
-  const data = await res.json();
+  if (res.status === 404) return null; // 신규 유저
+  if (!res.ok) throw new Error(`Backend auth failed: ${res.status} ${body}`);
+
+  const data = JSON.parse(body);
   return {
     accessToken: data.data.tokenResponse.accessToken,
     refreshToken: data.data.tokenResponse.refreshToken,
