@@ -27,11 +27,11 @@ export default function LoginPage() {
       className="flex flex-col bg-[#FF532C] px-5"
       style={{
         minHeight: "100dvh",
-        paddingTop: "env(safe-area-inset-top, 0px)",
-        paddingBottom: "calc(86px + env(safe-area-inset-bottom, 44px))",
+        paddingTop: `calc(env(safe-area-inset-top, 0px) + 79px)`,
+        paddingBottom: `calc(env(safe-area-inset-bottom, 0px) + 44px)`,
       }}
     >
-      <div className="flex flex-col" style={{ marginTop: 177, gap: 14 }}>
+      <div className="flex flex-col" style={{ gap: 14 }}>
         <Image src="/logo-white.svg" alt="토도독" width={82} height={32} priority />
         <p className="text-white" style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 22, lineHeight: "140%", letterSpacing: "-0.02em" }}>
           쿠폰번호를 입력하고<br />토도독 클럽을 시작해 보세요!
