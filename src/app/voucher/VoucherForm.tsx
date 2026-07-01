@@ -28,11 +28,7 @@ function Toast({ message, type, onHide }: { message: string; type: ToastType; on
       }}
     >
       {type === "error" && (
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-          <path d="M8 1.5L14.5 13H1.5L8 1.5Z" stroke="#FFCF58" strokeWidth="1.5" strokeLinejoin="round"/>
-          <path d="M8 6V9" stroke="#FFCF58" strokeWidth="1.5" strokeLinecap="round"/>
-          <circle cx="8" cy="11" r="0.75" fill="#FFCF58"/>
-        </svg>
+        <Image src="/warning-icon.svg" alt="warning" width={18} height={18} style={{ flexShrink: 0, marginRight: 10 }} />
       )}
       <span
         style={{
