@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const params = new URLSearchParams({
-    client_id: process.env.APPLE_ID!,
+    client_id: process.env.APPLE_CLIENT_ID!,
     redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/apple`,
     response_type: "code",
     scope: "name email",
