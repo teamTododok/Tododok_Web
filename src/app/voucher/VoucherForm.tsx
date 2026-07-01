@@ -181,7 +181,11 @@ export default function VoucherForm() {
             type="text"
             placeholder="프로모션 코드를 입력해 주세요"
             value={voucherCode}
-            onChange={(e) => setVoucherCode(e.target.value)}
+            onChange={(e) => {
+              const raw = e.target.value.replace(/-/g, "").toUpperCase().slice(0, 12);
+              const formatted = raw.match(/.{1,4}/g)?.join("-") ?? raw;
+              setVoucherCode(formatted);
+            }}
             required
             style={{
               ...suit,
