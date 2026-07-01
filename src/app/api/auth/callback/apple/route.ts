@@ -7,20 +7,20 @@ export async function POST(req: NextRequest) {
   const code = formData.get("code") as string;
   const base = process.env.NEXTAUTH_URL!;
 
-  if (!code) return NextResponse.redirect(`${base}/?error=no_code`);
+  if (!code) return NextResponse.redirect(`${base}/?error=no_code`, { status: 303 });
 
   try {
     const tokens = await backendLogin("APPLE", code, `${base}/api/auth/callback/apple`);
 
     if (!tokens) {
-      return NextResponse.redirect(`${base}/signup?provider=APPLE&code=${code}`);
+      return NextResponse.redirect(`${base}/signup?provider=APPLE&code=${code}`, { status: 303 });
     }
 
-    const res = NextResponse.redirect(`${base}/voucher`);
+    const res = NextResponse.redirect(`${base}/voucher`, { status: 303 });
     res.cookies.set("tododok_access_token", tokens.accessToken, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 3600, path: "/" });
     res.cookies.set("tododok_refresh_token", tokens.refreshToken, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 2592000, path: "/" });
     return res;
   } catch {
-    return NextResponse.redirect(`${base}/?error=login_failed`);
+    return NextResponse.redirect(`${base}/?error=login_failed`, { status: 303 });
   }
 }
