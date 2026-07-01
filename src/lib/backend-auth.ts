@@ -1,8 +1,9 @@
 const API_BASE = process.env.BACKEND_API_URL ?? "https://dev-api.tododok.kr";
 
-interface BackendAuthResult {
+export interface BackendAuthResult {
   accessToken: string;
   refreshToken: string;
+  membershipType: string;
 }
 
 export async function backendLogin(
@@ -26,6 +27,7 @@ export async function backendLogin(
   return {
     accessToken: data.data.accessToken,
     refreshToken: data.data.refreshToken,
+    membershipType: data.data.membershipType ?? "BASIC",
   };
 }
 

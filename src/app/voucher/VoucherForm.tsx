@@ -69,13 +69,26 @@ export default function VoucherForm() {
   const [voucherCode, setVoucherCode] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
+  const [hasActiveMembership, setHasActiveMembership] = useState(false);
 
   const showToast = (message: string, type: ToastType) => setToast({ message, type });
+
+  useEffect(() => {
+    const membership = document.cookie.split("; ").find(r => r.startsWith("tododok_membership="))?.split("=")[1];
+    if (membership && membership !== "BASIC") {
+      setHasActiveMembership(true);
+      showToast("현재 이용 중인 멤버십 만료 후 등록 가능합니다.", "error");
+    }
+  }, []);
 
   const COUPON_REGEX = /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (hasActiveMembership) {
+      showToast("현재 이용 중인 멤버십 만료 후 등록 가능합니다.", "error");
+      return;
+    }
     if (!COUPON_REGEX.test(voucherCode)) {
       showToast("올바른 프로모션 코드가 아닙니다.", "error");
       return;
