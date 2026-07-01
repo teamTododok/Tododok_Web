@@ -1,7 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+
+type ToastType = "success" | "error";
+
+function Toast({ message, type, onHide }: { message: string; type: ToastType; onHide: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onHide, 3000);
+    return () => clearTimeout(t);
+  }, [onHide]);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        bottom: "calc(env(safe-area-inset-bottom, 0px) + 30px)",
+        left: 20,
+        right: 20,
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        backgroundColor: "rgba(18,18,18,0.80)",
+        borderRadius: 48,
+        padding: "14px 20px",
+        zIndex: 100,
+      }}
+    >
+      {type === "error" && (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+          <path d="M8 1.5L14.5 13H1.5L8 1.5Z" stroke="#FFCF58" strokeWidth="1.5" strokeLinejoin="round"/>
+          <path d="M8 6V9" stroke="#FFCF58" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="8" cy="11" r="0.75" fill="#FFCF58"/>
+        </svg>
+      )}
+      <span
+        style={{
+          fontFamily: "SUIT, sans-serif",
+          fontWeight: 600,
+          fontSize: 14,
+          lineHeight: "140%",
+          letterSpacing: "-0.02em",
+          color: type === "error" ? "#FFCF58" : "#FFFFFF",
+        }}
+      >
+        {message}
+      </span>
+    </div>
+  );
+}
 
 const NOTICES = [
   "프로모션 쿠폰 등록 시 멤버십이 즉시 시작됩니다.",
@@ -16,7 +63,9 @@ const suit = { fontFamily: "SUIT, sans-serif" };
 export default function VoucherForm() {
   const [voucherCode, setVoucherCode] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
+  const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
+
+  const showToast = (message: string, type: ToastType) => setToast({ message, type });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -29,10 +78,10 @@ export default function VoucherForm() {
       });
       if (!res.ok) throw new Error("등록에 실패했습니다.");
       setStatus("success");
-      setMessage("바우처가 성공적으로 등록되었습니다!");
+      showToast("멤버십이 등록되었으니, 앱에서 확인해 주세요.", "success");
     } catch (err) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "오류가 발생했습니다.");
+      showToast(err instanceof Error ? err.message : "오류가 발생했습니다.", "error");
     }
   }
 
@@ -174,10 +223,8 @@ export default function VoucherForm() {
         </button>
       </div>
 
-      {message && (
-        <p style={{ marginTop: 8, textAlign: "center", fontSize: 13, color: status === "success" ? "#22c55e" : "#ef4444" }}>
-          {message}
-        </p>
+      {toast && (
+        <Toast message={toast.message} type={toast.type} onHide={() => setToast(null)} />
       )}
 
       {/* 안내사항 */}
