@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -14,16 +13,14 @@ function useBgColor(color: string) {
 
 export default function LoginPage() {
   useBgColor("#FF532C");
-  const { data: session, status } = useSession();
   const router = useRouter();
 
+  // 이미 로그인된 경우 바우처로
   useEffect(() => {
-    if (status === "authenticated") {
-      router.replace("/voucher");
-    }
-  }, [status, router]);
-
-  if (status === "loading" || status === "authenticated") return null;
+    fetch("/api/auth/me").then(r => {
+      if (r.ok) router.replace("/voucher");
+    });
+  }, [router]);
 
   return (
     <main
@@ -42,32 +39,32 @@ export default function LoginPage() {
       </div>
 
       <div className="flex flex-col gap-[14px] mt-auto">
-        <button
-          onClick={() => signIn("kakao", { callbackUrl: "/voucher" })}
+        <a
+          href="/api/auth/kakao/start"
           className="flex items-center justify-center gap-[6px] w-full h-12"
-          style={{ backgroundColor: "#FFDE00", color: "#3B1E1E", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em" }}
+          style={{ backgroundColor: "#FFDE00", color: "#3B1E1E", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em", textDecoration: "none" }}
         >
           <Image src="/kakao-logo.svg" alt="kakao" width={15} height={14} />
           카카오로 로그인
-        </button>
+        </a>
 
-        <button
-          onClick={() => signIn("naver", { callbackUrl: "/voucher" })}
+        <a
+          href="/api/auth/naver/start"
           className="flex items-center justify-center gap-[6px] w-full h-12"
-          style={{ backgroundColor: "#00C300", color: "#FFFFFF", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em" }}
+          style={{ backgroundColor: "#00C300", color: "#FFFFFF", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em", textDecoration: "none" }}
         >
           <Image src="/naver-logo.svg" alt="naver" width={14} height={14} />
           네이버로 로그인
-        </button>
+        </a>
 
-        <button
-          onClick={() => signIn("apple", { callbackUrl: "/voucher" })}
+        <a
+          href="/api/auth/apple/start"
           className="flex items-center justify-center gap-[6px] w-full h-12"
-          style={{ backgroundColor: "#000000", color: "#FFFFFF", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em" }}
+          style={{ backgroundColor: "#000000", color: "#FFFFFF", borderRadius: 4, fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15, letterSpacing: "-0.02em", textDecoration: "none" }}
         >
           <Image src="/apple-logo.svg" alt="apple" width={16} height={18} />
           Apple로 로그인
-        </button>
+        </a>
       </div>
     </main>
   );

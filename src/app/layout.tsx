@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import SessionProvider from "@/components/SessionProvider";
 import "./globals.css";
 
 const suit = localFont({
@@ -33,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full">
       <body className={`${suit.variable} min-h-full flex flex-col antialiased`}>
-        <SessionProvider>{children}</SessionProvider>
+        {children}
       </body>
     </html>
   );
