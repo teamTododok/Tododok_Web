@@ -4,7 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-const APP_STORE_URL = "https://apps.apple.com/kr/app/토도독/id6737494058";
+const APP_STORE_URL = "http://apple.co/4rWnNRz";
 
 function NewUserModal({ onClose }: { onClose: () => void }) {
   return (
