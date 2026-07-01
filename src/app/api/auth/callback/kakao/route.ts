@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
 
     if (!tokens) {
       // 신규 유저
-      return NextResponse.redirect(`${base}/signup?provider=KAKAO&code=${code}`);
+      return NextResponse.redirect(`${base}/?new_user=true`);
     }
 
     const res = NextResponse.redirect(`${base}/voucher`);

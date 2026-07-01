@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const tokens = await backendLogin("APPLE", code, `${base}/api/auth/callback/apple`);
 
     if (!tokens) {
-      return NextResponse.redirect(`${base}/signup?provider=APPLE&code=${code}`, { status: 303 });
+      return NextResponse.redirect(`${base}/?new_user=true`, { status: 303 });
     }
 
     const res = NextResponse.redirect(`${base}/voucher`, { status: 303 });

@@ -1,8 +1,73 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
+
+const APP_STORE_URL = "https://apps.apple.com/kr/app/토도독/id6737494058";
+
+function NewUserModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      style={{
+        position: "fixed", inset: 0, zIndex: 50,
+        backgroundColor: "rgba(0,0,0,0.5)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "0 24px",
+      }}
+      onClick={onClose}
+    >
+      <div
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderRadius: 16,
+          padding: "28px 24px 20px",
+          width: "100%",
+          maxWidth: 320,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 8,
+        }}
+        onClick={e => e.stopPropagation()}
+      >
+        <Image src="/logo-orange.svg" alt="토도독" width={46} height={18} style={{ marginBottom: 8 }} />
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 17, lineHeight: "140%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center" }}>
+          앱에서 회원가입 후<br />이용해 주세요
+        </p>
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 13, lineHeight: "150%", letterSpacing: "-0.02em", color: "#6E6E6E", textAlign: "center", marginBottom: 8 }}>
+          토도독 서비스는 앱에서<br />회원가입 후 이용 가능합니다.
+        </p>
+        <a
+          href={APP_STORE_URL}
+          style={{
+            width: "100%", height: 48,
+            backgroundColor: "#FF532C",
+            borderRadius: 8,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15,
+            letterSpacing: "-0.02em", color: "#FFFFFF",
+            textDecoration: "none",
+          }}
+        >
+          앱 다운로드
+        </a>
+        <button
+          onClick={onClose}
+          style={{
+            width: "100%", height: 48,
+            backgroundColor: "transparent", border: "none",
+            fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15,
+            letterSpacing: "-0.02em", color: "#A3A3A3",
+            cursor: "pointer",
+          }}
+        >
+          닫기
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function useBgColor(color: string) {
   useEffect(() => {
@@ -11,11 +76,19 @@ function useBgColor(color: string) {
   }, [color]);
 }
 
+function NewUserDetector({ onDetect }: { onDetect: () => void }) {
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get("new_user") === "true") onDetect();
+  }, [searchParams, onDetect]);
+  return null;
+}
+
 export default function LoginPage() {
   useBgColor("#FF532C");
   const router = useRouter();
+  const [showNewUserModal, setShowNewUserModal] = useState(false);
 
-  // 이미 로그인된 경우 바우처로
   useEffect(() => {
     fetch("/api/auth/me").then(r => {
       if (r.ok) router.replace("/voucher");
@@ -23,6 +96,9 @@ export default function LoginPage() {
   }, [router]);
 
   return (
+    <>
+    <Suspense><NewUserDetector onDetect={() => setShowNewUserModal(true)} /></Suspense>
+    {showNewUserModal && <NewUserModal onClose={() => setShowNewUserModal(false)} />}
     <main
       className="flex flex-col bg-[#FF532C] px-5"
       style={{
@@ -67,5 +143,6 @@ export default function LoginPage() {
         </a>
       </div>
     </main>
+    </>
   );
 }

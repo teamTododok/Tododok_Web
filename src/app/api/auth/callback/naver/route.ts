@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     const tokens = await backendLogin("NAVER", code, `${base}/api/auth/callback/naver`);
 
     if (!tokens) {
-      return NextResponse.redirect(`${base}/signup?provider=NAVER&code=${code}`);
+      return NextResponse.redirect(`${base}/?new_user=true`);
     }
 
     const res = NextResponse.redirect(`${base}/voucher`);
