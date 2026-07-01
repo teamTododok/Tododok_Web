@@ -67,21 +67,32 @@ export default function VoucherForm() {
 
   const showToast = (message: string, type: ToastType) => setToast({ message, type });
 
+  const COUPON_REGEX = /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!COUPON_REGEX.test(voucherCode)) {
+      showToast("올바른 프로모션 코드가 아닙니다.", "error");
+      return;
+    }
     setStatus("loading");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/voucher`, {
+      const res = await fetch("/api/voucher", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ voucherCode }),
+        body: JSON.stringify({ couponCode: voucherCode }),
       });
-      if (!res.ok) throw new Error("등록에 실패했습니다.");
+      const data = await res.json();
+      if (!res.ok) {
+        showToast(data.error ?? "오류가 발생했습니다.", "error");
+        setStatus("error");
+        return;
+      }
       setStatus("success");
       showToast("멤버십이 등록되었으니, 앱에서 확인해 주세요.", "success");
-    } catch (err) {
+    } catch {
       setStatus("error");
-      showToast(err instanceof Error ? err.message : "오류가 발생했습니다.", "error");
+      showToast("오류가 발생했습니다.", "error");
     }
   }
 
