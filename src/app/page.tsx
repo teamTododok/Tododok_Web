@@ -47,8 +47,12 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
         <div style={{ width: "100%", padding: "14px 20px 0", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <button
             onClick={() => {
-              window.location.href = "tododok://";
+              const iframe = document.createElement("iframe");
+              iframe.style.display = "none";
+              iframe.src = "tododok://";
+              document.body.appendChild(iframe);
               setTimeout(() => {
+                document.body.removeChild(iframe);
                 window.location.href = APP_STORE_URL;
               }, 1500);
             }}
