@@ -12,57 +12,55 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
       style={{
         position: "fixed", inset: 0, zIndex: 50,
         backgroundColor: "rgba(0,0,0,0.5)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        padding: "0 24px",
+        display: "flex", alignItems: "flex-end", justifyContent: "center",
       }}
       onClick={onClose}
     >
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          borderRadius: 16,
-          padding: "28px 24px 20px",
+          borderRadius: "20px 20px 0 0",
+          padding: "32px 24px calc(env(safe-area-inset-bottom, 0px) + 24px)",
           width: "100%",
-          maxWidth: 320,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 8,
+          gap: 0,
         }}
         onClick={e => e.stopPropagation()}
       >
-        <Image src="/logo-orange.svg" alt="토도독" width={46} height={18} style={{ marginBottom: 8 }} />
-        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 17, lineHeight: "140%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center" }}>
-          앱에서 회원가입 후<br />이용해 주세요
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 20, lineHeight: "140%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center", marginBottom: 10 }}>
+          프로모션 코드 등록 전<br />
+          <span style={{ color: "#FF532C" }}>회원가입이 필요</span>해요
         </p>
-        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 13, lineHeight: "150%", letterSpacing: "-0.02em", color: "#6E6E6E", textAlign: "center", marginBottom: 8 }}>
-          토도독 서비스는 앱에서<br />회원가입 후 이용 가능합니다.
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 14, lineHeight: "160%", letterSpacing: "-0.02em", color: "#6E6E6E", textAlign: "center", marginBottom: 28 }}>
+          프로모션 코드 등록을 위해<br />먼저 토도독 앱에서 회원가입을 완료해 주세요
         </p>
         <a
           href={APP_STORE_URL}
           style={{
-            width: "100%", height: 48,
+            width: "100%", height: 52,
             backgroundColor: "#FF532C",
             borderRadius: 8,
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15,
+            fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 16,
             letterSpacing: "-0.02em", color: "#FFFFFF",
-            textDecoration: "none",
+            textDecoration: "none", marginBottom: 4,
           }}
         >
-          앱 다운로드
+          토도독으로 이동
         </a>
         <button
           onClick={onClose}
           style={{
             width: "100%", height: 48,
             backgroundColor: "transparent", border: "none",
-            fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15,
+            fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 15,
             letterSpacing: "-0.02em", color: "#A3A3A3",
             cursor: "pointer",
           }}
         >
-          닫기
+          로그인
         </button>
       </div>
     </div>
