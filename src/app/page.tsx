@@ -20,48 +20,60 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
         style={{
           backgroundColor: "#FFFFFF",
           borderRadius: "20px 20px 0 0",
-          padding: "32px 24px calc(env(safe-area-inset-bottom, 0px) + 24px)",
           width: "100%",
+          paddingTop: 40,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 0,
         }}
         onClick={e => e.stopPropagation()}
       >
-        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 20, lineHeight: "140%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center", marginBottom: 10 }}>
+        {/* 타이틀 */}
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 700, fontSize: 18, lineHeight: "140%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center", margin: 0 }}>
           프로모션 코드 등록 전<br />
           <span style={{ color: "#FF532C" }}>회원가입이 필요</span>해요
         </p>
-        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 14, lineHeight: "160%", letterSpacing: "-0.02em", color: "#6E6E6E", textAlign: "center", marginBottom: 28 }}>
+
+        {/* 서브타이틀 */}
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 12, lineHeight: "160%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center", margin: "26px 0 0" }}>
           프로모션 코드 등록을 위해<br />먼저 토도독 앱에서 회원가입을 완료해 주세요
         </p>
-        <a
-          href={APP_STORE_URL}
-          style={{
-            width: "100%", height: 52,
-            backgroundColor: "#FF532C",
-            borderRadius: 8,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 16,
-            letterSpacing: "-0.02em", color: "#FFFFFF",
-            textDecoration: "none", marginBottom: 4,
-          }}
-        >
-          토도독으로 이동
-        </a>
-        <button
-          onClick={onClose}
-          style={{
-            width: "100%", height: 48,
-            backgroundColor: "transparent", border: "none",
-            fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 15,
-            letterSpacing: "-0.02em", color: "#A3A3A3",
-            cursor: "pointer",
-          }}
-        >
-          로그인
-        </button>
+
+        {/* 구분선 */}
+        <div style={{ width: "100%", height: 0.7, backgroundColor: "#F6F6F6", marginTop: 26 }} />
+
+        {/* 버튼 영역 */}
+        <div style={{ width: "100%", padding: "14px 20px 0", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <a
+            href={APP_STORE_URL}
+            style={{
+              width: "100%", height: 48,
+              backgroundColor: "#FF532C",
+              borderRadius: 6,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15,
+              letterSpacing: "-0.02em", color: "#FFFFFF",
+              textDecoration: "none",
+            }}
+          >
+            토도독으로 이동
+          </a>
+          <button
+            onClick={onClose}
+            style={{
+              width: "100%", height: 48,
+              backgroundColor: "transparent", border: "none",
+              fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 15,
+              letterSpacing: "-0.02em", color: "#A3A3A3",
+              cursor: "pointer", marginTop: 12,
+            }}
+          >
+            로그인
+          </button>
+        </div>
+
+        {/* 세이프 에어리어 */}
+        <div style={{ height: "calc(env(safe-area-inset-bottom, 0px) + 22px)" }} />
       </div>
     </div>
   );
