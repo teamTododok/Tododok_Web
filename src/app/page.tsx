@@ -45,8 +45,13 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
 
         {/* 버튼 영역 */}
         <div style={{ width: "100%", padding: "14px 20px 0", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <a
-            href={APP_STORE_URL}
+          <button
+            onClick={() => {
+              window.location.href = "tododok://";
+              setTimeout(() => {
+                window.location.href = APP_STORE_URL;
+              }, 1500);
+            }}
             style={{
               width: "100%", height: 48,
               backgroundColor: "#FF532C",
@@ -54,11 +59,11 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
               display: "flex", alignItems: "center", justifyContent: "center",
               fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 15,
               letterSpacing: "-0.02em", color: "#FFFFFF",
-              textDecoration: "none",
+              border: "none", cursor: "pointer",
             }}
           >
             토도독으로 이동
-          </a>
+          </button>
           <button
             onClick={onClose}
             style={{
