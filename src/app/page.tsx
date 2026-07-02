@@ -20,10 +20,12 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
           backgroundColor: "#FFFFFF",
           borderRadius: "20px 20px 0 0",
           width: "100%",
+          height: 284,
           paddingTop: 40,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          boxSizing: "border-box",
         }}
       >
         {/* 타이틀 */}
@@ -38,7 +40,7 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
         </p>
 
         {/* 구분선 */}
-        <div style={{ width: "100%", height: 0.7, backgroundColor: "#F6F6F6", marginTop: 26 }} />
+        <div style={{ width: "100%", height: 0.7, backgroundColor: "#F6F6F6", marginTop: 26, flexShrink: 0 }} />
 
         {/* 버튼 영역 */}
         <div style={{ width: "100%", padding: "14px 20px 0", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -70,9 +72,9 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        {/* 세이프 에어리어 */}
-        <div style={{ height: "calc(env(safe-area-inset-bottom, 0px) + 9px)" }} />
       </div>
+      {/* 세이프 에어리어 */}
+      <div style={{ height: "calc(env(safe-area-inset-bottom, 0px) + 9px)", backgroundColor: "#FFFFFF", width: "100%" }} />
     </div>
   );
 }
