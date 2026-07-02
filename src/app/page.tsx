@@ -84,13 +84,12 @@ function useBgColor(color: string) {
   }, [color]);
 }
 
-function NewUserDetector({ onDetect }: { onDetect: () => void }) {
+function NewUserDetector({ onDetect, dismissed }: { onDetect: () => void; dismissed: boolean }) {
   const searchParams = useSearchParams();
-  const detected = searchParams.get("new_user") === "true";
   useEffect(() => {
-    if (detected) onDetect();
+    if (searchParams.get("new_user") === "true" && !dismissed) onDetect();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [detected]);
+  }, []);
   return null;
 }
 
@@ -98,6 +97,7 @@ export default function LoginPage() {
   useBgColor("#FF532C");
   const router = useRouter();
   const [showNewUserModal, setShowNewUserModal] = useState(false);
+  const [modalDismissed, setModalDismissed] = useState(false);
 
   useEffect(() => {
     fetch("/api/auth/me").then(r => {
@@ -107,12 +107,13 @@ export default function LoginPage() {
 
   function handleCloseModal() {
     setShowNewUserModal(false);
+    setModalDismissed(true);
     window.history.replaceState({}, "", "/");
   }
 
   return (
     <>
-    <Suspense><NewUserDetector onDetect={() => setShowNewUserModal(true)} /></Suspense>
+    <Suspense><NewUserDetector onDetect={() => setShowNewUserModal(true)} dismissed={modalDismissed} /></Suspense>
     {showNewUserModal && <NewUserModal onClose={handleCloseModal} />}
     <main
       className="flex flex-col bg-[#FF532C] px-5"
