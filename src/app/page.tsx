@@ -103,10 +103,15 @@ export default function LoginPage() {
     });
   }, [router]);
 
+  function handleCloseModal() {
+    setShowNewUserModal(false);
+    router.replace("/");
+  }
+
   return (
     <>
     <Suspense><NewUserDetector onDetect={() => setShowNewUserModal(true)} /></Suspense>
-    {showNewUserModal && <NewUserModal onClose={() => setShowNewUserModal(false)} />}
+    {showNewUserModal && <NewUserModal onClose={handleCloseModal} />}
     <main
       className="flex flex-col bg-[#FF532C] px-5"
       style={{
