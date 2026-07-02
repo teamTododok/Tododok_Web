@@ -102,6 +102,13 @@ export default function VoucherForm() {
       });
       const data = await res.json();
       if (!res.ok) {
+        // 세션 만료 시 로그인 페이지로
+        if (res.status === 401) {
+          showToast("세션이 만료되었습니다. 다시 로그인해 주세요.", "error");
+          setTimeout(() => { window.location.href = "/"; }, 2000);
+          setStatus("error");
+          return;
+        }
         showToast(data.error ?? "오류가 발생했습니다.", "error");
         setStatus("error");
         return;
@@ -110,7 +117,7 @@ export default function VoucherForm() {
       showToast("멤버십이 등록되었으니, 앱에서 확인해 주세요.", "success");
     } catch {
       setStatus("error");
-      showToast("오류가 발생했습니다.", "error");
+      showToast("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.", "error");
     }
   }
 

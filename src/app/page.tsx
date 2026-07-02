@@ -96,10 +96,20 @@ function useBgColor(color: string) {
   }, [color]);
 }
 
-function NewUserDetector({ onDetect, dismissed }: { onDetect: () => void; dismissed: boolean }) {
+const LOGIN_ERROR_MESSAGES: Record<string, string> = {
+  login_failed: "로그인 중 오류가 발생했습니다. 다시 시도해 주세요.",
+  no_code: "로그인 정보를 받아오지 못했습니다. 다시 시도해 주세요.",
+};
+
+function NewUserDetector({ onDetect, dismissed, onError }: { onDetect: () => void; dismissed: boolean; onError: (msg: string) => void }) {
   const searchParams = useSearchParams();
   useEffect(() => {
     if (searchParams.get("new_user") === "true" && !dismissed) onDetect();
+    const error = searchParams.get("error");
+    if (error) {
+      onError(LOGIN_ERROR_MESSAGES[error] ?? "오류가 발생했습니다. 다시 시도해 주세요.");
+      window.history.replaceState({}, "", "/");
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return null;
@@ -110,6 +120,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [showNewUserModal, setShowNewUserModal] = useState(false);
   const [modalDismissed, setModalDismissed] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/auth/me").then(r => {
@@ -125,7 +136,14 @@ export default function LoginPage() {
 
   return (
     <>
-    <Suspense><NewUserDetector onDetect={() => setShowNewUserModal(true)} dismissed={modalDismissed} /></Suspense>
+    <Suspense><NewUserDetector onDetect={() => setShowNewUserModal(true)} dismissed={modalDismissed} onError={(msg) => setLoginError(msg)} /></Suspense>
+    {loginError && (
+      <div style={{ position: "fixed", bottom: "calc(env(safe-area-inset-bottom, 0px) + 30px)", left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 100, pointerEvents: "none" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, backgroundColor: "rgba(18,18,18,0.80)", borderRadius: 48, padding: "14px 20px", margin: "0 20px" }}>
+          <span style={{ fontFamily: "SUIT, sans-serif", fontWeight: 600, fontSize: 14, lineHeight: "140%", letterSpacing: "-0.02em", color: "#FFCF58" }}>{loginError}</span>
+        </div>
+      </div>
+    )}
     {showNewUserModal && <NewUserModal onClose={handleCloseModal} />}
     <main
       className="flex flex-col bg-[#FF532C] px-5"
