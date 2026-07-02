@@ -71,7 +71,7 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* 세이프 에어리어 */}
-        <div style={{ height: "calc(env(safe-area-inset-bottom, 0px) + 22px)" }} />
+        <div style={{ height: "calc(env(safe-area-inset-bottom, 0px) + 9px)" }} />
       </div>
     </div>
   );
