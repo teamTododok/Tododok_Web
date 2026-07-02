@@ -33,7 +33,7 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
         </p>
 
         {/* 서브타이틀 */}
-        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 14, lineHeight: "150%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center", margin: "26px 0 0" }}>
+        <p style={{ fontFamily: "SUIT, sans-serif", fontWeight: 500, fontSize: 14, lineHeight: "150%", letterSpacing: "-0.02em", color: "#1A1A1A", textAlign: "center", margin: "4px 0 0" }}>
           프로모션 코드 등록을 위해<br />먼저 토도독 앱에서 회원가입을 완료해 주세요
         </p>
 
