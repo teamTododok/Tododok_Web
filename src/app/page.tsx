@@ -12,7 +12,7 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
       style={{
         position: "fixed", inset: 0, zIndex: 50,
         backgroundColor: "rgba(0,0,0,0.5)",
-        display: "flex", alignItems: "flex-end", justifyContent: "center",
+        display: "flex", flexDirection: "column", justifyContent: "flex-end",
       }}
     >
       <div
@@ -26,6 +26,7 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
           flexDirection: "column",
           alignItems: "center",
           boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
         {/* 타이틀 */}
