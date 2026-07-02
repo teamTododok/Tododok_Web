@@ -86,9 +86,11 @@ function useBgColor(color: string) {
 
 function NewUserDetector({ onDetect }: { onDetect: () => void }) {
   const searchParams = useSearchParams();
+  const detected = searchParams.get("new_user") === "true";
   useEffect(() => {
-    if (searchParams.get("new_user") === "true") onDetect();
-  }, [searchParams, onDetect]);
+    if (detected) onDetect();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detected]);
   return null;
 }
 
@@ -105,7 +107,7 @@ export default function LoginPage() {
 
   function handleCloseModal() {
     setShowNewUserModal(false);
-    router.replace("/");
+    window.history.replaceState({}, "", "/");
   }
 
   return (
