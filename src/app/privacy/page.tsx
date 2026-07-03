@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 const suit = { fontFamily: "SUIT, sans-serif" };
 const base = { ...suit, fontSize: 14, lineHeight: "160%", color: "#1A1A1A" } as const;
@@ -210,8 +209,7 @@ const sections: Line[][] = [
 export default function PrivacyPage() {
   return (
     <main style={{ minHeight: "100dvh", backgroundColor: "#FFFFFF", ...suit }}>
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "16px 20px" }}>
-        <Link href="/voucher" style={{ position: "absolute", left: 20, color: "#1A1A1A", textDecoration: "none", fontSize: 18, lineHeight: 1 }}>‹</Link>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "16px 20px" }}>
         <span style={{ ...suit, fontWeight: 600, fontSize: 17, color: "#1A1A1A" }}>개인정보처리방침</span>
       </div>
 
