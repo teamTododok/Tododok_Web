@@ -30,7 +30,7 @@ function Toast({ message, type, onHide }: { message: string; type: ToastType; on
         alignItems: "center",
         backgroundColor: "rgba(18,18,18,0.80)",
         borderRadius: 48,
-        padding: "14px 20px",
+        padding: "10px 20px",
         marginLeft: 20,
         marginRight: 20,
       }}
@@ -147,7 +147,7 @@ export default function VoucherForm() {
         style={{
           ...suit,
           fontWeight: 500,
-          fontSize: 12,
+          fontSize: 14,
           lineHeight: "150%",
           letterSpacing: "-0.02em",
           color: "#505050",
@@ -214,7 +214,7 @@ export default function VoucherForm() {
             style={{
               ...suit,
               fontWeight: 500,
-              fontSize: 12,
+              fontSize: 16,
               lineHeight: "150%",
               letterSpacing: "-0.02em",
               color: "#1A1A1A",
@@ -296,17 +296,17 @@ export default function VoucherForm() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap: 16,
             fontWeight: 600,
             fontSize: 12,
             letterSpacing: "-0.02em",
             color: "#6E6E6E",
             marginBottom: 4,
+            gap: 12,
           }}
         >
-          <span>개인정보처리방침</span>
+          <a href="/privacy" style={{ color: "#6E6E6E", textDecoration: "none" }}>개인정보처리방침</a>
           <span>|</span>
-          <span>이용약관</span>
+          <a href="/terms" style={{ color: "#6E6E6E", textDecoration: "none" }}>이용약관</a>
         </div>
         <p
           style={{
