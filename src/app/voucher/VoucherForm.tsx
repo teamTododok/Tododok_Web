@@ -123,7 +123,7 @@ export default function VoucherForm() {
   return (
     <main className="flex flex-col" style={{ minHeight: "100dvh", backgroundColor: "#F6F6F6", paddingLeft: 30, paddingRight: 30, paddingBottom: "env(safe-area-inset-bottom, 0px)" }}>
       {/* 로고 */}
-      <div style={{ marginTop: "calc(env(safe-area-inset-top, 0px) + 12px)" }}>
+      <div style={{ marginTop: "calc(env(safe-area-inset-top, 0px) + 22px)" }}>
         <Image src="/logo-orange.svg" alt="토도독" width={46} height={18} />
       </div>
 
