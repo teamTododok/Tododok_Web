@@ -214,7 +214,7 @@ export default function VoucherForm() {
             style={{
               ...suit,
               fontWeight: 500,
-              fontSize: 16,
+              fontSize: 14,
               lineHeight: "150%",
               letterSpacing: "-0.02em",
               color: "#1A1A1A",
