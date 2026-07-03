@@ -222,9 +222,9 @@ const sections: Line[][] = [
 export default function TermsPage() {
   return (
     <main style={{ minHeight: "100dvh", backgroundColor: "#FFFFFF", ...suit }}>
-      <div style={{ display: "flex", alignItems: "center", padding: "16px 20px", borderBottom: "1px solid #F6F6F6" }}>
-        <Link href="/voucher" style={{ color: "#1A1A1A", textDecoration: "none", fontSize: 18, marginRight: 16 }}>‹</Link>
-        <span style={{ fontWeight: 600, fontSize: 17, color: "#1A1A1A" }}>이용약관</span>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "16px 20px" }}>
+        <Link href="/voucher" style={{ position: "absolute", left: 20, color: "#1A1A1A", textDecoration: "none", fontSize: 18, lineHeight: 1 }}>‹</Link>
+        <span style={{ ...suit, fontWeight: 600, fontSize: 17, color: "#1A1A1A" }}>이용약관</span>
       </div>
 
       <div style={{ padding: "24px 20px 40px", display: "flex", flexDirection: "column", gap: 18 }}>
