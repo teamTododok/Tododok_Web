@@ -272,7 +272,7 @@ export default function VoucherForm() {
             key={i}
             style={{
               ...suit,
-              fontWeight: 600,
+              fontWeight: 500,
               fontSize: 12,
               lineHeight: "160%",
               letterSpacing: "-0.02em",
