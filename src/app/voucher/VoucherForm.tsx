@@ -7,7 +7,7 @@ type ToastType = "success" | "error";
 
 function Toast({ message, type, onHide }: { message: string; type: ToastType; onHide: () => void }) {
   useEffect(() => {
-    const t = setTimeout(onHide, 3000);
+    const t = setTimeout(onHide, 4000);
     return () => clearTimeout(t);
   }, [onHide]);
 
