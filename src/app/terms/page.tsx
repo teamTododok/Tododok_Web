@@ -23,18 +23,16 @@ function Article({ lines }: { lines: Line[] }) {
         }
         if (line.type === "num1") {
           return (
-            <div key={i} style={{ display: "flex", marginTop: mt }}>
-              <span style={{ ...base, fontWeight: 400, flexShrink: 0, minWidth: 22 }}>{line.label}</span>
-              <p style={{ ...base, fontWeight: 400, margin: 0, marginLeft: 4 }}>{line.text}</p>
-            </div>
+            <p key={i} style={{ ...base, fontWeight: 400, margin: 0, marginTop: mt, paddingLeft: "1.5em", textIndent: "-1.5em" }}>
+              {line.label + "  " + line.text}
+            </p>
           );
         }
         if (line.type === "num2") {
           return (
-            <div key={i} style={{ display: "flex", marginTop: mt, paddingLeft: 18 }}>
-              <span style={{ ...base, fontWeight: 400, flexShrink: 0, minWidth: 28 }}>{line.label}</span>
-              <p style={{ ...base, fontWeight: 400, margin: 0, marginLeft: 4 }}>{line.text}</p>
-            </div>
+            <p key={i} style={{ ...base, fontWeight: 400, margin: 0, marginTop: mt, paddingLeft: "3.2em", textIndent: "-1.8em" }}>
+              {line.label + "  " + line.text}
+            </p>
           );
         }
         return (

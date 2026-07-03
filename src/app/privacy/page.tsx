@@ -24,24 +24,17 @@ function Article({ lines }: { lines: Line[] }) {
           );
         }
         if (line.type === "num1") {
-          const [label, ...rest] = line.text.split(/(?<=^\d+\.\s{2})/);
-          const content = rest.join("") || line.text.replace(/^\d+\.\s+/, "");
-          const prefix = line.text.match(/^\d+\.\s+/)?.[0] ?? "";
           return (
-            <div key={i} style={{ display: "flex", marginTop: mt }}>
-              <span style={{ ...base, fontWeight: 400, flexShrink: 0, minWidth: 24 }}>{prefix.trim().replace(/\s+$/, "")}</span>
-              <p style={{ ...base, fontWeight: 400, margin: 0, marginLeft: 6 }}>{content}</p>
-            </div>
+            <p key={i} style={{ ...base, fontWeight: 400, margin: 0, marginTop: mt, paddingLeft: "1.5em", textIndent: "-1.5em" }}>
+              {line.text}
+            </p>
           );
         }
         if (line.type === "num2") {
-          const prefix = line.text.match(/^\(\d+\)\s*/)?.[0] ?? "";
-          const content = line.text.slice(prefix.length);
           return (
-            <div key={i} style={{ display: "flex", marginTop: mt, paddingLeft: 18 }}>
-              <span style={{ ...base, fontWeight: 400, flexShrink: 0, minWidth: 28 }}>{prefix.trim()}</span>
-              <p style={{ ...base, fontWeight: 400, margin: 0, marginLeft: 4 }}>{content}</p>
-            </div>
+            <p key={i} style={{ ...base, fontWeight: 400, margin: 0, marginTop: mt, paddingLeft: "3.2em", textIndent: "-1.8em" }}>
+              {line.text}
+            </p>
           );
         }
         if (line.type === "bullet") {
