@@ -77,20 +77,19 @@ export default function VoucherForm() {
     const membership = document.cookie.split("; ").find(r => r.startsWith("tododok_membership="))?.split("=")[1];
     if (membership && membership !== "BASIC") {
       setHasActiveMembership(true);
-      showToast("현재 이용 중인 멤버십 만료 후 등록 가능합니다.", "error");
     }
   }, []);
 
-  const COUPON_REGEX = /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (hasActiveMembership) {
-      showToast("현재 이용 중인 멤버십 만료 후 등록 가능합니다.", "error");
+    if (status === "loading") return;
+    const raw = voucherCode.replace(/-/g, "");
+    if (raw.length !== 12) {
+      showToast("올바른 프로모션 코드가 아닙니다.", "error");
       return;
     }
-    if (!COUPON_REGEX.test(voucherCode)) {
-      showToast("올바른 프로모션 코드가 아닙니다.", "error");
+    if (hasActiveMembership) {
+      showToast("현재 이용 중인 멤버십 만료 후 등록 가능합니다.", "error");
       return;
     }
     setStatus("loading");
@@ -244,7 +243,6 @@ export default function VoucherForm() {
         <button
           type="button"
           onClick={handleSubmit as unknown as React.MouseEventHandler}
-          disabled={status === "loading" || !voucherCode}
           style={{
             ...suit,
             fontWeight: 600,
@@ -255,8 +253,8 @@ export default function VoucherForm() {
             height: 48,
             borderRadius: 8,
             border: "none",
-            cursor: voucherCode ? "pointer" : "default",
-            opacity: !voucherCode ? 0.5 : 1,
+            cursor: "pointer",
+            opacity: 1,
           }}
         >
           등록하기

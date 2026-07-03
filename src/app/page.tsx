@@ -20,13 +20,12 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
           backgroundColor: "#FFFFFF",
           borderRadius: "20px 20px 0 0",
           width: "100%",
-          height: 284,
           paddingTop: 40,
+          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 9px)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           boxSizing: "border-box",
-          overflow: "hidden",
         }}
       >
         {/* 타이틀 */}
@@ -81,10 +80,7 @@ function NewUserModal({ onClose }: { onClose: () => void }) {
             닫기
           </button>
         </div>
-
       </div>
-      {/* 세이프 에어리어 */}
-      <div style={{ height: "calc(env(safe-area-inset-bottom, 0px) + 9px)", backgroundColor: "#FFFFFF", width: "100%" }} />
     </div>
   );
 }

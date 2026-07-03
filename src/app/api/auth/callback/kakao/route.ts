@@ -16,9 +16,9 @@ export async function GET(req: NextRequest) {
     }
 
     const res = NextResponse.redirect(`${base}/voucher`);
-    res.cookies.set("tododok_access_token", tokens.accessToken, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 3600, path: "/" });
+    res.cookies.set("tododok_access_token", tokens.accessToken, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 1800, path: "/" });
     res.cookies.set("tododok_refresh_token", tokens.refreshToken, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 2592000, path: "/" });
-    res.cookies.set("tododok_membership", tokens.membershipType, { secure: true, sameSite: "lax", maxAge: 3600, path: "/" });
+    res.cookies.set("tododok_membership", tokens.membershipType, { secure: true, sameSite: "lax", maxAge: 1800, path: "/" });
     return res;
   } catch {
     return NextResponse.redirect(`${base}/?error=login_failed`);
